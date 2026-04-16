@@ -29,7 +29,7 @@ jobs:
     uses: fitforge101/fitforge-shared/.github/workflows/_ci-template.yml@main
     with:
       service-name: workout-service
-      service-path: services/workout-service
+      service-path: . 
       runtime: node
       node-version: "20"
       environment: ${{ github.ref_name }}
