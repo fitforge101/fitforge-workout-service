@@ -41,7 +41,7 @@ jobs:
     if: github.event_name == 'pull_request'
     uses: fitforge101/fitforge-shared/.github/workflows/_sca.yml@v2.0.0
     with:
-      service-name: auth-service
+      service-name: workout-service
       service-path: .
       runtime: node
     secrets:
@@ -55,8 +55,8 @@ jobs:
     with:
       subject: "🚨 Snyk: Critical Vulnerabilities in auth-service"
       body: "Critical/High vulnerabilities found in auth-service dependencies."
-      service-name: auth-service
-      artifact-name: snyk-report-auth-service
+      service-name: workout-service
+      artifact-name: snyk-report-workout-service
     secrets:
       BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
 
@@ -66,7 +66,7 @@ jobs:
     if: github.event_name == 'pull_request'
     uses: fitforge101/fitforge-shared/.github/workflows/_docker-build.yml@v2.0.0
     with:
-      service-name: auth-service
+      service-name: workout-service
       service-path: .
 
   # ─── Notify: Trivy Criticals ───
@@ -77,17 +77,18 @@ jobs:
     with:
       subject: "🚨 Trivy: Critical Vulnerabilities in auth-service"
       body: "CRITICAL vulnerabilities found in auth-service Docker image."
-      service-name: auth-service
+      service-name: workout-service
       artifact-name: trivy-auth-service
     secrets:
       BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
 
   # ─── Publish Docker Image (Tag + Build + Push) ───
   publish:
+    needs: [build] 
     if: github.event_name == 'push'
     uses: fitforge101/fitforge-shared/.github/workflows/_docker-publish.yml@v2.0.0
     with:
-      service-name: auth-service
+      service-name: workout-service
       service-path: .
       environment: ${{ github.ref_name }}
     secrets:
@@ -100,7 +101,7 @@ jobs:
   #   if: needs.publish.result == 'success'
   #   uses: fitforge101/fitforge-shared/.github/workflows/_cd-update.yml@main
   #   with:
-  #     service-name: auth-service
+  #     service-name: workout-service
   #     image-tag: ${{ needs.publish.outputs.image-tag }}
   #     environment: ${{ github.ref_name }}
   #   secrets:
