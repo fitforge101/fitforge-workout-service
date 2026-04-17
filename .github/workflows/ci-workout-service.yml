@@ -5,6 +5,7 @@ on:
     branches: 
       - develop
       - main
+      - features/workout
     # paths:
       # - "services/workout-service/**"
       # - ".github/workflows/ci-workout-service.yml"
@@ -13,6 +14,7 @@ on:
     branches:
       - develop
       - main
+      - features/workout
     # paths:
     #   - "services/workout-service/**"
     #   - ".github/workflows/ci-workout-service.yml"
@@ -33,3 +35,4 @@ jobs:
       node-version: "20"
       environment: ${{ github.ref_name }}
     secrets: inherit
+
