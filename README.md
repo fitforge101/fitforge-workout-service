@@ -28,7 +28,7 @@ The `workout-service` provides full CRUD capabilities for managing personalized 
 *Request:*
 ```json
 {
-  "userId": "64a1b2c3d4e5f67890123456",
+  "userId": "xxxxxxxxxxxx",
   "title": "Hypertrophy Push Day",
   "daysPerWeek": 2,
   "exercises": [
@@ -39,8 +39,8 @@ The `workout-service` provides full CRUD capabilities for managing personalized 
 *Response:*
 ```json
 {
-  "_id": "64c3d4e5f67890123456789b",
-  "userId": "64a1b2c3d4e5f67890123456",
+  "_id": "xxxxxxxxxxxx",
+  "userId": "xxxxxxxxxxxx",
   "title": "Hypertrophy Push Day",
   "daysPerWeek": 2,
   "exercises": [
